@@ -11,6 +11,7 @@ nav:
 menu:
   首页: / || fas fa-home
   归档: /archives/ || fas fa-archive
+  分类: /categories/ || fas fa-folder-open
   标签: /tags/ || fas fa-tags
   关于: /about/ || fas fa-user
 
@@ -30,7 +31,8 @@ index_top_img_height: 70vh
 
 subtitle:
   enable: true
-  effect: true
+  # 打字机效果：截图/无 JS 环境下可能显示不全，关掉后静态显示第一行
+  effect: false
   source: false
   sub:
     - 记录技术、读书与生活
