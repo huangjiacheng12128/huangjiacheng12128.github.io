@@ -1,0 +1,97 @@
+# Hexo 主配置
+# 完整说明：https://hexo.io/zh-cn/docs/configuration
+
+# 站点信息
+title: 个人博客
+subtitle: ''
+description: '记录技术、读书与生活'
+keywords:
+author: 博主
+language: zh-CN
+timezone: 'Asia/Shanghai'
+
+# 域名：部署到 Cloudflare Pages 并绑定自定义域名后改成你的地址
+url: https://your-domain.com
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+# 目录
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# 写作
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# 首页
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# 分类与标签
+default_category: uncategorized
+category_map:
+tag_map:
+
+# 元信息
+meta_generator: true
+
+# 日期格式
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+updated_option: 'mtime'
+
+# 分页
+per_page: 10
+pagination_dir: page
+
+# 包含与排除
+include:
+exclude:
+ignore:
+
+# 搜索数据（配合主题的本地搜索）
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+# 主题
+theme: butterfly
+
+# 部署（Cloudflare Pages 用 Git 集成，这里留空）
+deploy:
+  type: ''

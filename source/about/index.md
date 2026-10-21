@@ -1,0 +1,26 @@
+---
+title: 关于
+date: 2026-10-21 18:00:00
+---
+
+你好，我是博主。
+
+这里是我的个人博客，主要记录：
+
+- 技术笔记与踩坑记录
+- 读书与生活随笔
+- 一些长期折腾的小项目
+
+## 关于本站
+
+- 生成器：Hexo
+- 主题：Butterfly
+- 托管：Cloudflare Pages（境外节点，免 ICP 备案）
+- 搜索：本地搜索（hexo-generator-searchdb）
+- 统计：busuanzi 浏览量
+- 评论：暂未开启（可用 Giscus）
+
+## 联系我
+
+- GitHub：[yourname](https://github.com/yourname)
+- 邮箱：you@example.com

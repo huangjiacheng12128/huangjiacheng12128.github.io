@@ -1,0 +1,79 @@
+# Butterfly 主题配置（只写需要覆盖的项，其余用主题默认值）
+# 完整配置：node_modules/hexo-theme-butterfly/_config.yml
+
+favicon: /img/favicon.ico
+
+nav:
+  logo:
+  display_title: true
+  display_post_title: true
+
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  关于: /about/ || fas fa-user
+
+# 社交链接：把下面两行取消注释并改成你自己的地址
+# social:
+#   fab fa-github: https://github.com/你的用户名 || GitHub || '#24292e'
+#   fas fa-envelope: mailto:you@example.com || Email || '#4a7dbe'
+
+avatar:
+  img: /img/avatar.svg
+  effect: false
+
+# 首页横幅与副标题
+default_top_img: /img/banner.svg
+index_img: /img/banner.svg
+index_top_img_height: 70vh
+
+subtitle:
+  enable: true
+  effect: true
+  source: false
+  sub:
+    - 记录技术、读书与生活
+
+# 首页文章摘要：2 = 有 description 用 description，没有就用自动摘要
+index_post_content:
+  method: 2
+  length: 300
+
+# 本地搜索（无需第三方服务）
+search:
+  use: local_search
+  placeholder: 搜索文章
+  local_search:
+    preload: false
+
+# 侧边栏
+aside:
+  card_author:
+    enable: true
+    button:
+      enable: false
+  card_announcement:
+    enable: true
+    content: '欢迎来到我的博客，这里记录技术、读书与生活。'
+
+# 文章目录
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+
+# 代码块
+code_blocks:
+  theme: light
+  macStyle: true
+
+# 页脚
+footer:
+  owner:
+    enable: true
+    since: 2026
+  copyright:
+    enable: true
