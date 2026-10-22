@@ -10,8 +10,8 @@ author: 博主
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
-# 域名：部署到 Cloudflare Pages 并绑定自定义域名后改成你的地址
-url: https://your-domain.com
+# 站点地址：GitHub Pages 用户主页（仓库名必须是 huangjiacheng12128.github.io）
+url: https://huangjiacheng12128.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
