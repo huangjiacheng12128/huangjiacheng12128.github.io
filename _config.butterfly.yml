@@ -63,6 +63,12 @@ aside:
     enable: true
     content: '欢迎来到我的博客，这里记录技术、读书与生活。'
 
+# 浏览量：关闭（不蒜子服务不稳定，去掉后页面不再显示浏览量）
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+
 # 文章目录
 toc:
   post: true
@@ -83,9 +89,3 @@ footer:
     since: 2026
   copyright:
     enable: true
-
-# 自定义注入（浏览量兜底脚本）
-inject:
-  head:
-  bottom:
-    - '<script defer src="/js/busuanzi-fallback.js"></script>'

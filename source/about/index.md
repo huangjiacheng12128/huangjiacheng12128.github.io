@@ -15,12 +15,11 @@ date: 2026-10-21 18:00:00
 
 - 生成器：Hexo
 - 主题：Butterfly
-- 托管：Cloudflare Pages（境外节点，免 ICP 备案）
+- 托管：GitHub Pages（境外节点，免 ICP 备案）
 - 搜索：本地搜索（hexo-generator-searchdb）
-- 统计：busuanzi 浏览量
+- 访问统计：暂未开启
 - 评论：暂未开启（可用 Giscus）
 
 ## 联系我
 
-- GitHub：[yourname](https://github.com/yourname)
-- 邮箱：you@example.com
+- GitHub：<https://github.com/huangjiacheng12128>
