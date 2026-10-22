@@ -83,3 +83,9 @@ footer:
     since: 2026
   copyright:
     enable: true
+
+# 自定义注入（浏览量兜底脚本）
+inject:
+  head:
+  bottom:
+    - '<script defer src="/js/busuanzi-fallback.js"></script>'
