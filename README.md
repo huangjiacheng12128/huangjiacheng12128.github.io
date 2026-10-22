@@ -176,7 +176,7 @@ Actions 里等构建完成（约 1 分钟），再强制刷新（Ctrl+F5）。�
 统一放 `source/img/`，用 `/img/文件名` 引用。上传前把照片压到 1 MB 以内（可用 [Squoosh](https://squoosh.app/) 或 TinyPNG）；图片会随文章永久留在仓库里，太大以后自己 clone 也会慢。
 
 **浏览量一直转圈 / 显示不出来？**
-本站已经去掉了浏览量统计。如果你以后重新开启不蒜子，遇到一直转圈，通常是它服务端 502，可以在 `_config.butterfly.yml` 里把 `busuanzi` 三项改回 `false`。
+本站已经去掉了浏览量统计，侧边栏「网站信息」只显示文章数目。如果你以后重新开启不蒜子，遇到一直转圈，通常是它服务端 502，可以在 `_config.butterfly.yml` 里把 `busuanzi` 三项改回 `false`；如果「网站信息」里「最后更新时间」在转圈，把 `aside.card_webinfo.last_push_date` 改成 `false`。
 
 **国内访问慢？**
 GitHub Pages 在国内时快时慢，这是免备案方案的主要代价。可以换 Cloudflare Pages（见下），或接受现状。**不要用国内 CDN**——绑定自定义域名必须备案。

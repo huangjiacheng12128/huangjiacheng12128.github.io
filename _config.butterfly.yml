@@ -62,6 +62,12 @@ aside:
   card_announcement:
     enable: true
     content: '欢迎来到我的博客，这里记录技术、读书与生活。'
+  # 网站信息卡：只保留「文章数目」，不显示访客、浏览量、最后更新时间
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: false
+    runtime_date:
 
 # 浏览量：关闭（不蒜子服务不稳定，去掉后页面不再显示浏览量）
 busuanzi:
