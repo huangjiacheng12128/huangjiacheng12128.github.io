@@ -128,14 +128,15 @@ Write-Ok "已提交：$hash  $msg"
 
 # ---------- 5. 推送 ----------
 Write-Step '推送到 GitHub'
+Write-Host '   第一次推送可能会弹出 GitHub 登录窗口，按提示登录一次，以后就不用再登了。' -ForegroundColor Yellow
 $env:GIT_TERMINAL_PROMPT = '0'
-$env:GCM_INTERACTIVE = 'Never'
-& git push origin main 2>&1 | Out-Null
+$pushOut = & git push origin main 2>&1
 $pushed = ($LASTEXITCODE -eq 0)
 if ($pushed) {
     Write-Ok '推送成功。'
 } else {
-    Write-Warn2 '自动推送需要登录凭据，没成功。已帮你打开 GitHub Desktop。'
+    $pushOut | Select-Object -Last 3 | ForEach-Object { Write-Host "   $_" -ForegroundColor DarkGray }
+    Write-Warn2 '自动推送没成功，已帮你打开 GitHub Desktop。'
     $desktop = "$env:LOCALAPPDATA\GitHubDesktop\GitHubDesktop.exe"
     if (Test-Path $desktop) {
         Start-Process $desktop
@@ -145,7 +146,11 @@ if ($pushed) {
     }
 }
 
-Write-Host "`n文章已保存：$BaseUrl" -ForegroundColor White
-if ($pushed) { Write-Host "部署进度（约 1~2 分钟）：$ActionsUrl" -ForegroundColor Gray }
+if ($pushed) {
+    Write-Host "`n文章已发布：$BaseUrl" -ForegroundColor White
+    Write-Host "部署进度（约 1~2 分钟）：$ActionsUrl" -ForegroundColor Gray
+} else {
+    Write-Host "`n本地已保存并提交；在 GitHub Desktop 点 Push origin 后，网站才会更新。" -ForegroundColor White
+}
 Write-Host "`n按 Enter 关闭窗口。"
 $null = Read-Host
