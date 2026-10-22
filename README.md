@@ -31,8 +31,7 @@
 ├─ _config.butterfly.yml  Butterfly 配置（菜单、头像、横幅、侧栏、搜索）
 ├─ package.json           依赖与 npm 脚本
 ├─ scaffolds/             新建文章 / 页面的模板
-├─ 写博客.lnk → 桌面快捷方式（指向下面的 发布文章.cmd）
-├─ 发布文章.cmd          双击运行
+├─ 发布文章.cmd          双击运行（桌面上的「写博客」快捷方式指向它）
 ├─ 发布文章.ps1          新建/编辑 → 构建 → 提交 → 推送
 ├─ .github/workflows/
 │  └─ pages.yml           推送到 main 后自动构建并部署
