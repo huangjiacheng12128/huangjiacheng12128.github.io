@@ -42,6 +42,10 @@ index_post_content:
   method: 2
   length: 300
 
+# 图片：alt 文字会自动显示成图注；点击图片可放大
+photofigcaption: true
+lightbox: fancybox
+
 # 本地搜索（无需第三方服务）
 search:
   use: local_search
