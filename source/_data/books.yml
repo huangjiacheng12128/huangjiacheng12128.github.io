@@ -9,3 +9,11 @@
 #   size: 1.2 MB
 #   date: 2026-10-23
 #   desc: 一句话介绍这本书。
+
+- title: '年谱'
+  author: ''
+  file: '/books/files/年谱.pdf'
+  format: 'PDF'
+  size: '9.3 MB'
+  date: '2026-10-23'
+  desc: ''
