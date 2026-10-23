@@ -74,12 +74,35 @@ function Open-InEditor([string]$Path) {
     }
 }
 
+function Assert-FrontMatter([string]$Path) {
+    $lines = @(Get-Content -LiteralPath $Path -Encoding UTF8)
+    if ($lines.Count -eq 0 -or $lines[0].Trim() -ne '---') { return }
+    $keys = 'title|date|tags|categories|description|cover|top_img|permalink|sticky|comments'
+    for ($i = 1; $i -lt $lines.Count; $i++) {
+        if ($lines[$i].Trim() -eq '---') { return }
+        if ($lines[$i] -match "^($keys):(\S.*)$") {
+            $k = $Matches[1]
+            $v = $Matches[2].Trim()
+            throw "文章开头的「${k}」后面少了空格（第 $($i + 1) 行）。`n把它改成：${k}: $v`n保存后再按 Enter。"
+        }
+    }
+}
+
 function Invoke-Build {
     Write-Step '正在构建网站（约 10 秒）'
     & npx hexo clean 2>&1 | Out-Null
-    & npm run build 2>&1 | Out-Null
-    if ($LASTEXITCODE -ne 0 -or -not (Test-Path (Join-Path $Repo 'public\index.html'))) {
-        throw '构建失败，请把窗口里的报错发给助手。'
+    $prevEap = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    $log = @(& npm run build 2>&1)
+    $code = $LASTEXITCODE
+    $ErrorActionPreference = $prevEap
+    if ($code -ne 0 -or -not (Test-Path (Join-Path $Repo 'public\index.html'))) {
+        $dir = Join-Path $Repo '.preview'
+        New-Item -ItemType Directory -Path $dir -Force | Out-Null
+        $logFile = Join-Path $dir 'build-error.log'
+        $log | Out-File -LiteralPath $logFile -Encoding UTF8
+        $tail = ($log | Select-Object -Last 12) -join "`n"
+        throw "构建失败。最后几行：`n`n$tail`n`n完整日志：$logFile"
     }
     $count = (Get-ChildItem (Join-Path $Repo 'public') -Recurse -File).Count
     Write-Ok "构建完成，共 $count 个文件。"
@@ -142,6 +165,7 @@ Write-Host "`n在编辑器里写完、保存后，回到这个窗口按 Enter �
 $null = Read-Host
 
 # ---------- 4. 构建 + 提交 ----------
+Assert-FrontMatter $path
 Invoke-Build
 
 Write-Step '提交到本地仓库'
