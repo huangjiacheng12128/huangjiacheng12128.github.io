@@ -3,6 +3,11 @@
 
 favicon: /img/favicon.svg
 
+# 正文字号：14 → 15，整体更易读；想更大改成 16px，想小改回 14px
+font:
+  global_font_size: 15px
+  code_font_size: 14px
+
 # 主题色：紫罗兰，和横幅、头像、封面同一色系
 theme_color:
   enable: true
@@ -47,6 +52,14 @@ default_top_img: /img/banner.svg
 index_img: /img/banner.svg
 index_top_img_height: 70vh
 index_site_info_top: 40%
+
+# 没单独设封面的文章，用这张渐变图当默认封面，避免卡片出现大片空白
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  default_cover:
+    - /img/cover-default.svg
 
 subtitle:
   enable: true

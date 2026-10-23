@@ -3,6 +3,21 @@
    只做视觉层：横幅极光、渐变标题、卡片、页脚、导航细节
    ============================================================ */
 
+/* ---------- 阅读排版：正文行距略收紧，长文更好读 ---------- */
+#article-container p,
+#article-container li {
+  line-height: 1.85;
+}
+
+#article-container h2 {
+  margin-top: 1.6em;
+}
+
+#article-container h2 + p,
+#article-container h3 + p {
+  margin-top: .6em;
+}
+
 :root {
   --accent: #7c3aed;
   --accent-deep: #4f46e5;

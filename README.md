@@ -63,8 +63,9 @@
 | 想改什么 | 改哪里 |
 | --- | --- |
 | 主色、链接色、按钮色 | `_config.butterfly.yml` 的 `theme_color` |
+| 全站字号 | `_config.butterfly.yml` 的 `font.global_font_size`（当前 15px，想更大改 16px） |
 | 首页横幅 | `source/img/banner.svg` |
-| 文章封面 | 文章头部的 `cover:`；示例封面 `source/img/cover-hello-2.svg` |
+| 文章封面 | 文章头部的 `cover:`；默认封面 `source/img/cover-default.svg`，示例封面 `source/img/cover-hello-2.svg` |
 | 头像 / 站点图标 | `source/img/avatar.svg` / `source/img/favicon.svg` |
 | 卡片圆角、页脚、横幅动效 | `source/css/custom.css`（由 `inject.head` 引入） |
 
