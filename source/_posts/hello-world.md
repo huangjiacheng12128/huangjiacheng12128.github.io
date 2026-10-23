@@ -16,7 +16,7 @@ categories:
 
 ## 这个博客怎么来的
 
-本站用 [Hexo](https://hexo.io/zh-cn/) 生成，主题是 [Butterfly](https://butterfly.js.org/)，静态文件托管在 GitHub Pages 上。服务器在境外，所以不需要 ICP 备案。
+本站用 [Hexo](https://hexo.io/zh-cn/) 生成，主题是 [Butterfly](https://butterfly.js.org/)，静态文件托管在 GitHub Pages 上，推送后由 GitHub Actions 自动构建部署。
 
 ## 怎么发新文章
 
