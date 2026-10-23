@@ -164,8 +164,12 @@ if (-not $SkipGit) {
   if ($changes) {
     git commit -m "photos: 新增 $added 张照片" | Out-Null
     $env:GIT_TERMINAL_PROMPT = '0'
-    $push = git push origin main 2>&1
-    if ($LASTEXITCODE -ne 0) {
+    $prevEap = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    $push = & cmd /c "git push origin main 2>&1"
+    $pushCode = $LASTEXITCODE
+    $ErrorActionPreference = $prevEap
+    if ($pushCode -ne 0) {
       Write-Host ''
       Write-Host '推送没有成功，最近几行输出：' -ForegroundColor Yellow
       $push | Select-Object -Last 4 | ForEach-Object { Write-Host "  $_" }

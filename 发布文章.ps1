@@ -130,8 +130,11 @@ Write-Ok "已提交：$hash  $msg"
 Write-Step '推送到 GitHub'
 Write-Host '   第一次推送可能会弹出 GitHub 登录窗口，按提示登录一次，以后就不用再登了。' -ForegroundColor Yellow
 $env:GIT_TERMINAL_PROMPT = '0'
-$pushOut = & git push origin main 2>&1
+$prevEap = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'
+$pushOut = & cmd /c "git push origin main 2>&1"
 $pushed = ($LASTEXITCODE -eq 0)
+$ErrorActionPreference = $prevEap
 if ($pushed) {
     Write-Ok '推送成功。'
 } else {
