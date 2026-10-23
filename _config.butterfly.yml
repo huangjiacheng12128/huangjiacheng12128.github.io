@@ -44,7 +44,7 @@ menu:
 #   fas fa-envelope: mailto:you@example.com || Email || '#4a7dbe'
 
 avatar:
-  img: /img/avatar.svg
+  img: /img/avatar.jpg
   effect: false
 
 # 首页横幅与副标题

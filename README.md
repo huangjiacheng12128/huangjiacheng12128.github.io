@@ -66,7 +66,7 @@
 | 全站字号 | `_config.butterfly.yml` 的 `font.global_font_size`（当前 15px，想更大改 16px） |
 | 首页横幅 | `source/img/banner.svg` |
 | 文章封面 | 默认不启用；想给某篇文章加封面，在文章开头加 `cover: /img/xxx.jpg` |
-| 头像 / 站点图标 | `source/img/avatar.svg` / `source/img/favicon.svg` |
+| 头像 / 站点图标 | `source/img/avatar.jpg` / `source/img/favicon.svg` |
 | 卡片圆角、页脚、横幅动效 | `source/css/custom.css`（由 `inject.head` 引入） |
 
 想换主色：把 `theme_color.main` 和 `custom.css` 顶部的 `--accent` 一起改掉，提交后生效；也可以 `npm run build` 本地预览。
