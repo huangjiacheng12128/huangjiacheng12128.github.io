@@ -23,7 +23,8 @@
 - 右上角本地搜索（`hexo-generator-searchdb`，无需第三方服务）；
 - 文章目录、代码块复制、文章版权声明、分享按钮；
 - 明暗主题切换（右下角月亮/太阳按钮）；
-- 归档、分类、标签、关于页；
+- 归档、分类、标签、相册、关于页；
+- **相册照片墙**：网格缩略图、点开左右翻看大图，桌面「上传照片」一键发布；
 - 构建时生成 `search.xml`、`sitemap.xml`、`atom.xml`。
 
 ## 目录结构
@@ -38,15 +39,22 @@
 ├─ 发布文章.ps1          新建/编辑 → 构建 → 提交 → 推送
 ├─ 添加图片.cmd          双击运行（桌面上的「添加图片」快捷方式指向它）
 ├─ 添加图片.ps1          选图/截图 → 存入 source/img → 复制 Markdown
+├─ 上传照片.cmd          双击运行（桌面上的「上传照片」快捷方式指向它）
+├─ 上传照片.ps1          多选照片 → 相册 → 自动构建/提交/推送
 ├─ .github/workflows/
 │  └─ pages.yml           推送到 main 后自动构建并部署
+├─ scripts/
+│  └─ photo-gallery.js    相册标签（{% photo_gallery %}）
 ├─ source/
 │  ├─ _posts/             文章（Markdown）
+│  ├─ _data/photos.yml    相册照片清单（由「上传照片」自动维护）
 │  ├─ about/              关于页
 │  ├─ categories/         分类页
 │  ├─ tags/               标签页
-│  ├─ css/custom.css      视觉微调（横幅极光、卡片、页脚）
-│  └─ img/                图片、头像、横幅、文章封面
+│  ├─ photos/             相册页
+│  ├─ css/custom.css      视觉微调（横幅极光、卡片、相册、页脚）
+│  ├─ img/                图片、头像、横幅、文章封面
+│  │  └─ photos/          相册原图
 └─ public/                构建产物（已 gitignore，不提交）
 ```
 
@@ -132,6 +140,39 @@ categories:
 - 方括号里的文字就是图注（图片的 alt），会自动显示在图片下方；不写也能显示，但写了更像图文笔记；
 - 图片按正文宽度自适应，长截图或竖图都不会撑破版面；
 - 想新建一篇带图片结构的文章：`npm run new -- photo "标题"`（模板见 `scaffolds/photo.md`）。
+
+## 相册（照片墙）
+
+顶部菜单的「相册」是一个独立照片墙：缩略图排成网格，点开可左右翻看大图。
+
+### 上传照片（推荐）
+
+1. 双击桌面上的 **上传照片**（或运行 `.\上传照片.cmd`）；
+2. 多选照片，确定；
+3. 输入一句说明（可留空），脚本会自动：
+   - 把图片复制到 `source/img/photos/`；
+   - 把记录追加到 `source/_data/photos.yml`；
+   - 构建、提交并推送；
+4. 等 1–3 分钟，打开 <https://huangjiacheng12128.github.io/photos/>，`Ctrl+F5` 刷新。
+
+### 手动加（在 GitHub 网页也能做）
+
+1. 把图片上传到仓库的 `source/img/photos/`；
+2. 编辑 `source/_data/photos.yml`，追加：
+
+   ```yaml
+   - src: /img/photos/照片.jpg
+     caption: 一句话说明
+     date: '2026-10-23'
+   ```
+
+3. 提交后 Actions 会自动发布。
+
+说明：
+
+- 手机照片建议先压到 2000px 以内，仓库更轻、打开更快；
+- 想删照片：删掉 `source/img/photos/` 里的图和 `photos.yml` 里对应的三行；
+- 相册页模板在 `source/photos/index.md`，样式在 `source/css/custom.css` 的 `.photo-*` 部分。
 
 ## 自动部署（已配置好）
 

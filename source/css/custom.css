@@ -351,3 +351,122 @@ html {
 }
 
 
+
+/* ---------- 相册页 ---------- */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin: 10px 0 28px;
+}
+
+.photo-item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--card-bg, #fff);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  box-shadow: 0 8px 22px rgba(76, 29, 149, 0.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.photo-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(76, 29, 149, 0.18);
+}
+
+.photo-item a {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.photo-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0;
+  transition: transform .5s ease;
+}
+
+.photo-item .img-alt {
+  display: none;
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
+}
+
+.photo-item figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 14px 13px;
+  font-size: .86rem;
+  color: var(--font-color, #4c4948);
+}
+
+.photo-caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.photo-date {
+  flex: none;
+  font-size: .76rem;
+  color: #8b8aa0;
+}
+
+.photo-empty {
+  padding: 46px 24px;
+  text-align: center;
+  border: 1px dashed rgba(124, 58, 237, 0.35);
+  border-radius: 18px;
+  background: rgba(124, 58, 237, 0.04);
+  color: var(--font-color, #4c4948);
+}
+
+.photo-empty > i {
+  display: block;
+  width: 2.4rem;
+  margin: 0 auto 12px;
+  font-size: 2rem;
+  color: #7c3aed;
+}
+
+.photo-empty p {
+  margin: 4px 0;
+}
+
+.photo-empty-hint {
+  font-size: .85rem;
+  color: #8b8aa0;
+}
+
+[data-theme="dark"] .photo-item {
+  border-color: rgba(167, 139, 250, 0.18);
+}
+
+[data-theme="dark"] .photo-empty {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .photo-item figcaption {
+    padding: 9px 11px 11px;
+    font-size: .8rem;
+  }
+
+  .photo-date {
+    display: none;
+  }
+}
