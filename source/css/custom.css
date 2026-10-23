@@ -1,0 +1,353 @@
+/* ============================================================
+   紫罗兰 · 极光主题  custom.css
+   只做视觉层：横幅极光、渐变标题、卡片、页脚、导航细节
+   ============================================================ */
+
+:root {
+  --accent: #7c3aed;
+  --accent-deep: #4f46e5;
+  --accent-soft: #a78bfa;
+  --accent-glow: #22d3ee;
+  --ink: #17152b;
+  --card-radius: 18px;
+  --card-border: rgba(124, 58, 237, 0.10);
+  --card-shadow: 0 12px 32px -14px rgba(49, 46, 129, 0.22);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #a78bfa transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: linear-gradient(180deg, var(--accent-soft), var(--accent));
+}
+::selection {
+  background: rgba(124, 58, 237, 0.22);
+  color: inherit;
+}
+
+/* ---------- 首页横幅：极光 + 网格 ---------- */
+#page-header.full_page {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+#page-header:not(.not-top-img)::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(10, 8, 30, 0.08) 0%, rgba(10, 8, 30, 0.52) 100%),
+    radial-gradient(42% 55% at 18% 28%, rgba(139, 92, 246, 0.78), transparent 70%),
+    radial-gradient(38% 48% at 82% 22%, rgba(34, 211, 238, 0.42), transparent 70%),
+    radial-gradient(45% 55% at 70% 82%, rgba(236, 72, 153, 0.40), transparent 70%);
+  filter: blur(18px) saturate(120%);
+  animation: aurora 18s ease-in-out infinite alternate;
+}
+
+#page-header:not(.not-top-img)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 52%, rgba(255, 255, 255, 0.06) 100%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 64px);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 35%, transparent 78%);
+  mask-image: radial-gradient(ellipse at 50% 45%, #000 35%, transparent 78%);
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1.02) rotate(-1deg);
+  }
+  50% {
+    transform: translate3d(1.5%, 1.5%, 0) scale(1.06) rotate(0.5deg);
+  }
+  100% {
+    transform: translate3d(3%, -1.5%, 0) scale(1.03) rotate(1.2deg);
+  }
+}
+
+#page-header > * {
+  position: relative;
+  z-index: 2;
+}
+
+#page-header.full_page #site-info {
+  text-align: center;
+}
+
+#site-info::before {
+  content: "READ · THINK · BUILD";
+  display: block;
+  width: max-content;
+  margin: 0 auto 20px auto;
+  padding: 7px 18px;
+  font: 600 11px/1.1 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  color: #ede9fe;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 28px rgba(30, 27, 75, 0.28);
+}
+
+#page-header.full_page #site-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-shadow: none;
+  background: linear-gradient(102deg, #ffffff 4%, #f5f3ff 34%, #ddd6fe 62%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 10px 30px rgba(30, 27, 75, 0.55));
+  font-size: clamp(2.15rem, 4.4vw, 3.7rem);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+#page-header.full_page #site-subtitle {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+  font-weight: 400;
+  text-shadow: 0 2px 18px rgba(10, 8, 30, 0.55);
+}
+
+/* 打字机光标不显示，只保留文字逐字出现的效果 */
+.typed-cursor {
+  display: none !important;
+}
+
+/* ---------- 导航细节 ---------- */
+#nav .site-page {
+  position: relative;
+}
+
+#nav .site-page::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+#nav .site-page:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- 内容卡片 ---------- */
+.recent-post-item,
+#aside-content .card-widget {
+  border-radius: var(--card-radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1),
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+
+.recent-post-item {
+  position: relative;
+}
+
+.recent-post-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent-glow));
+  transition: opacity 0.35s;
+}
+
+.recent-post-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 58, 237, 0.28);
+  box-shadow: 0 22px 48px -18px rgba(79, 70, 229, 0.40);
+}
+
+.recent-post-item:hover::after {
+  opacity: 1;
+}
+
+#aside-content .card-widget:hover {
+  border-color: rgba(124, 58, 237, 0.24);
+  box-shadow: 0 18px 40px -20px rgba(79, 70, 229, 0.38);
+}
+
+.recent-post-item .post_cover {
+  overflow: hidden;
+}
+
+.recent-post-item .post_cover img.post-bg {
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.recent-post-item:hover .post_cover img.post-bg {
+  transform: scale(1.06);
+}
+
+/* ---------- 正文细节 ---------- */
+#article-container h2 {
+  position: relative;
+  padding-left: 18px;
+  border-bottom: none;
+}
+
+#article-container h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  bottom: 0.35em;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-soft));
+}
+
+#article-container blockquote {
+  border-left-color: var(--accent);
+  background: rgba(124, 58, 237, 0.06);
+  border-radius: 0 12px 12px 0;
+}
+
+#article-container a {
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(124, 58, 237, 0.35);
+}
+
+/* ---------- 页脚 ---------- */
+#footer {
+  background: linear-gradient(135deg, #100f24 0%, #1d1743 48%, #2b1060 100%);
+}
+
+#footer::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: -70px;
+  height: 170px;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 100%, rgba(124, 58, 237, 0.55), transparent 70%);
+  filter: blur(26px);
+}
+
+#footer > * {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+#footer a {
+  color: #c4b5fd;
+}
+
+#footer a:hover {
+  color: #ffffff;
+}
+
+#footer .footer-copyright {
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 右侧按钮 ---------- */
+#rightside > div > button:hover,
+#rightside > div > button:focus {
+  background: var(--accent);
+}
+
+/* ---------- 深色模式 ---------- */
+[data-theme="dark"] {
+  --card-border: rgba(167, 139, 250, 0.16);
+  --card-shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.60);
+}
+
+[data-theme="dark"] #page-header:not(.not-top-img)::before {
+  opacity: 0.85;
+}
+
+[data-theme="dark"] #footer {
+  background: linear-gradient(135deg, #0a0912 0%, #14102b 50%, #1f0c3f 100%);
+}
+
+/* ---------- 小屏与减动效 ---------- */
+@media (max-width: 768px) {
+  #page-header:not(.not-top-img)::before {
+    inset: -18%;
+    filter: blur(26px);
+  }
+
+  #site-info::before {
+    margin-bottom: 14px;
+    padding: 6px 14px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+  }
+
+  #page-header.full_page #site-title {
+    font-size: 1.7rem;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  #page-header.full_page #site-subtitle {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    letter-spacing: 0.10em;
+    text-indent: 0.10em;
+  }
+
+  .recent-post-item,
+  #aside-content .card-widget {
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #page-header:not(.not-top-img)::before {
+    animation: none;
+  }
+
+  .recent-post-item,
+  .recent-post-item:hover,
+  #aside-content .card-widget,
+  #aside-content .card-widget:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+

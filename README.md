@@ -17,7 +17,9 @@
 
 ## 已内置
 
-- 首页渐变横幅 + 打字机副标题、侧栏作者卡片和公告；
+- **紫罗兰极光横幅**：渐变标题、徽章、打字机副标题；
+- **文章卡片**：封面图、悬停浮起、渐变顶边；侧栏卡片统一圆角与阴影；
+- **自定义样式**：`source/css/custom.css` 控制横幅、卡片、正文标题、页脚、导航下划线；
 - 右上角本地搜索（`hexo-generator-searchdb`，无需第三方服务）；
 - 文章目录、代码块复制、文章版权声明、分享按钮；
 - 明暗主题切换（右下角月亮/太阳按钮）；
@@ -43,9 +45,22 @@
 │  ├─ about/              关于页
 │  ├─ categories/         分类页
 │  ├─ tags/               标签页
-│  └─ img/                图片、头像、横幅
+│  ├─ css/custom.css      视觉微调（横幅极光、卡片、页脚）
+│  └─ img/                图片、头像、横幅、文章封面
 └─ public/                构建产物（已 gitignore，不提交）
 ```
+
+## 视觉与配色
+
+| 想改什么 | 改哪里 |
+| --- | --- |
+| 主色、链接色、按钮色 | `_config.butterfly.yml` 的 `theme_color` |
+| 首页横幅 | `source/img/banner.svg` |
+| 文章封面 | 文章头部的 `cover:`；示例封面 `source/img/cover-hello-2.svg` |
+| 头像 / 站点图标 | `source/img/avatar.svg` / `source/img/favicon.svg` |
+| 卡片圆角、页脚、横幅动效 | `source/css/custom.css`（由 `inject.head` 引入） |
+
+想换一个主色：把 `theme_color.main` 和 `custom.css` 顶部的 `--accent` 一起改掉即可。改完双击「写博客」推送，或 `npm run build` 本地预览。
 
 ## 写文章
 

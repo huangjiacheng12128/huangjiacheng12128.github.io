@@ -1,7 +1,24 @@
 # Butterfly 主题配置（只写需要覆盖的项，其余用主题默认值）
 # 完整配置：node_modules/hexo-theme-butterfly/_config.yml
 
-favicon: /img/favicon.ico
+favicon: /img/favicon.svg
+
+# 主题色：紫罗兰，和横幅、头像、封面同一色系
+theme_color:
+  enable: true
+  main: '#7c3aed'
+  paginator: '#a78bfa'
+  text_selection: '#8b5cf6'
+  link_color: '#7c3aed'
+  hr_color: '#c4b5fd'
+  code_foreground: '#c026d3'
+  code_background: '#f4f0ff'
+  toc_color: '#8b5cf6'
+  blockquote_padding_color: '#8b5cf6'
+  blockquote_background_color: '#8b5cf6'
+  meta_color: '#8b8aa0'
+  button_hover: '#4f46e5'
+  scrollbar_color: '#8b5cf6'
 
 nav:
   logo:
@@ -28,14 +45,27 @@ avatar:
 default_top_img: /img/banner.svg
 index_img: /img/banner.svg
 index_top_img_height: 70vh
+index_site_info_top: 40%
 
 subtitle:
   enable: true
-  # 打字机效果：截图/无 JS 环境下可能显示不全，关掉后静态显示第一行
-  effect: false
+  effect: true
   source: false
   sub:
     - 记录技术、读书与生活
+
+# 鼠标丝带：默认关掉，避免在白色正文上留下大块淡色弧线
+# 想开启把 enable 改成 true
+canvas_ribbon:
+  enable: false
+  size: 120
+  alpha: 0.25
+  zIndex: -1
+  click_to_change: false
+  mobile: false
+
+# 右侧回到顶部显示阅读进度百分比
+rightside_scroll_percent: true
 
 # 首页文章摘要：2 = 有 description 用 description，没有就用自动摘要
 index_post_content:
@@ -95,3 +125,8 @@ footer:
     since: 2026
   copyright:
     enable: true
+
+# 自定义样式（紫罗兰极光视觉）
+inject:
+  head:
+    - '<link rel="stylesheet" href="/css/custom.css">'
