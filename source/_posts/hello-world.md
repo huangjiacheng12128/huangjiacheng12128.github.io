@@ -2,7 +2,6 @@
 title: 你好，世界
 date: 2026-10-21 18:00:00
 description: 本站的第一篇文章：博客是怎么来的，以及以后怎么发新文章。
-cover: /img/cover-hello-2.svg
 top_img: /img/banner.svg
 tags:
   - 随笔
