@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="45%" stop-color="#3b0764"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <radialGradient id="violet" cx="78%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyan" cx="16%" cy="78%" r="55%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity=".26"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pink" cx="82%" cy="82%" r="50%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity=".30"/>
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#ffffff" stroke-opacity=".04" stroke-width="1"/>
+    </pattern>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".05"/></feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#violet)"/>
+  <rect width="1200" height="900" fill="url(#cyan)"/>
+  <rect width="1200" height="900" fill="url(#pink)"/>
+  <rect width="1200" height="900" fill="url(#grid)"/>
+
+  <g fill="none" stroke="#ede9fe">
+    <circle cx="190" cy="250" r="250" stroke-opacity=".07"/>
+    <circle cx="190" cy="250" r="320" stroke-opacity=".04"/>
+  </g>
+  <circle cx="190" cy="250" r="4" fill="#c4b5fd" fill-opacity=".5"/>
+
+  <text x="600" y="270" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="20" letter-spacing="10" fill="#ede9fe" fill-opacity=".55">FIRST POST · 2026</text>
+  <line x1="530" y1="312" x2="670" y2="312" stroke="#ede9fe" stroke-opacity=".22" stroke-width="1"/>
+
+  <text x="600" y="520" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif" font-size="92" font-weight="300" letter-spacing="8" fill="#ffffff" fill-opacity=".94">你好，世界</text>
+
+  <line x1="530" y1="592" x2="670" y2="592" stroke="#ede9fe" stroke-opacity=".20" stroke-width="1"/>
+  <text x="600" y="652" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="16" letter-spacing="9" fill="#ede9fe" fill-opacity=".48">HELLO, WORLD</text>
+  <text x="600" y="700" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="5" fill="#ede9fe" fill-opacity=".30">2026 · 10 · 21</text>
+
+  <rect width="1200" height="900" filter="url(#grain)" opacity=".5"/>
+</svg>
