@@ -43,16 +43,7 @@ function Get-Posts {
 }
 
 function Open-InEditor([string]$Path) {
-    # Typora 1.x；0.9.x 是 2020 年的测试版，在当前系统上启动即退出，跳过
-    $typora = $null
-    $oldTypora = $null
-    foreach ($cand in $TyporaCandidates) {
-        if (-not (Test-Path -LiteralPath $cand)) { continue }
-        $ver = $null
-        try { $ver = [version](Get-Item -LiteralPath $cand).VersionInfo.FileVersion } catch { }
-        if ($ver -and $ver.Major -ge 1) { $typora = $cand; break }
-        if (-not $oldTypora) { $oldTypora = $cand }
-    }
+    $typora = $TyporaCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
     if ($typora) {
         try {
             Start-Process -FilePath $typora -ArgumentList "`"$Path`""
@@ -61,8 +52,6 @@ function Open-InEditor([string]$Path) {
         } catch {
             Write-Warn2 "Typora 启动失败，改用 VS Code。"
         }
-    } elseif ($oldTypora) {
-        Write-Warn2 "检测到旧版 Typora（0.9.x 测试版，启动即退出），改用 VS Code。"
     }
 
     $code = $CodeCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
