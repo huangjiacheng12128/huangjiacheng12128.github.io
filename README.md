@@ -18,7 +18,7 @@
 ## 已内置
 
 - **紫罗兰极光横幅**：渐变标题、徽章、打字机副标题；
-- **文章卡片**：封面图、悬停浮起、渐变顶边；侧栏卡片统一圆角与阴影；
+- **文章卡片**：圆角、悬停浮起、渐变顶边；侧栏卡片统一圆角与阴影；
 - **自定义样式**：`source/css/custom.css` 控制横幅、卡片、正文标题、页脚、导航下划线；
 - 右上角本地搜索（`hexo-generator-searchdb`，无需第三方服务）；
 - 文章目录、代码块复制、文章版权声明、分享按钮；
@@ -65,7 +65,7 @@
 | 主色、链接色、按钮色 | `_config.butterfly.yml` 的 `theme_color` |
 | 全站字号 | `_config.butterfly.yml` 的 `font.global_font_size`（当前 15px，想更大改 16px） |
 | 首页横幅 | `source/img/banner.svg` |
-| 文章封面 | 文章头部的 `cover:`；默认封面 `source/img/cover-default.svg`，示例封面 `source/img/cover-hello-2.svg` |
+| 文章封面 | 默认不启用；想给某篇文章加封面，在文章开头加 `cover: /img/xxx.jpg` |
 | 头像 / 站点图标 | `source/img/avatar.svg` / `source/img/favicon.svg` |
 | 卡片圆角、页脚、横幅动效 | `source/css/custom.css`（由 `inject.head` 引入） |
 

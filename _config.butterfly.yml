@@ -59,7 +59,6 @@ cover:
   aside_enable: true
   archives_enable: true
   default_cover:
-    - /img/cover-default.svg
 
 subtitle:
   enable: true
