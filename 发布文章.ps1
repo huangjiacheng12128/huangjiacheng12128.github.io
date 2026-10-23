@@ -16,6 +16,16 @@ $Repo = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $Repo
 $BaseUrl = 'https://huangjiacheng12128.github.io'
 $ActionsUrl = 'https://github.com/huangjiacheng12128/huangjiacheng12128.github.io/actions'
+$TyporaCandidates = @(
+    'D:\tools\Typora\Typora.exe',
+    (Join-Path $env:LOCALAPPDATA 'Programs\Typora\Typora.exe'),
+    (Join-Path $env:ProgramFiles 'Typora\Typora.exe')
+)
+$CodeCandidates = @(
+    'D:\ruanjian\visual code\Microsoft VS Code\Code.exe',
+    (Join-Path $env:LOCALAPPDATA 'Programs\Microsoft VS Code\Code.exe'),
+    (Join-Path $env:ProgramFiles 'Microsoft VS Code\Code.exe')
+)
 
 function Write-Step([string]$Text) { Write-Host "`n>> $Text" -ForegroundColor Cyan }
 function Write-Ok([string]$Text)   { Write-Host "   $Text" -ForegroundColor Green }
@@ -33,11 +43,44 @@ function Get-Posts {
 }
 
 function Open-InEditor([string]$Path) {
+    # Typora 1.x；0.9.x 是 2020 年的测试版，在当前系统上启动即退出，跳过
+    $typora = $null
+    $oldTypora = $null
+    foreach ($cand in $TyporaCandidates) {
+        if (-not (Test-Path -LiteralPath $cand)) { continue }
+        $ver = $null
+        try { $ver = [version](Get-Item -LiteralPath $cand).VersionInfo.FileVersion } catch { }
+        if ($ver -and $ver.Major -ge 1) { $typora = $cand; break }
+        if (-not $oldTypora) { $oldTypora = $cand }
+    }
+    if ($typora) {
+        try {
+            Start-Process -FilePath $typora -ArgumentList "`"$Path`""
+            Write-Ok "已用 Typora 打开：$Path"
+            return
+        } catch {
+            Write-Warn2 "Typora 启动失败，改用 VS Code。"
+        }
+    } elseif ($oldTypora) {
+        Write-Warn2 "检测到旧版 Typora（0.9.x 测试版，启动即退出），改用 VS Code。"
+    }
+
+    $code = $CodeCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+    if ($code) {
+        try {
+            Start-Process -FilePath $code -ArgumentList "`"$Path`""
+            Write-Ok "已用 VS Code 打开：$Path"
+            return
+        } catch {
+            Write-Warn2 "VS Code 启动失败，改用系统默认程序。"
+        }
+    }
+
     try {
         Start-Process $Path
-        Write-Ok "已用默认编辑器打开：$Path"
+        Write-Ok "已用默认程序打开：$Path"
     } catch {
-        Write-Warn2 "打不开默认编辑器，改用记事本。"
+        Write-Warn2 "没有可用的默认编辑器，改用记事本。"
         Start-Process notepad.exe $Path
     }
 }
