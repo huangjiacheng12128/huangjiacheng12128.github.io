@@ -15,10 +15,10 @@ date: 2026-10-21 18:00:00
 
 - 生成器：Hexo
 - 主题：Butterfly
-- 托管：GitHub Pages（境外节点，免 ICP 备案）
-- 搜索：本地搜索（hexo-generator-searchdb）
+- 托管：GitHub Pages
+- 搜索：本地搜索
 - 访问统计：暂未开启
-- 评论：暂未开启（可用 Giscus）
+- 评论：暂未开启
 
 ## 联系我
 
