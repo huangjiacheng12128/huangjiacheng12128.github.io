@@ -1,0 +1,11 @@
+# 电子书列表
+# 上传工具会自动往这里追加条目，也可以手动编辑。
+# 字段：title 书名 / author 作者 / file 文件路径 / format 格式 / size 大小 / date 日期 / desc 简介
+#
+# - title: 示例电子书
+#   author: 佚名
+#   file: /books/files/示例.epub
+#   format: EPUB
+#   size: 1.2 MB
+#   date: 2026-10-23
+#   desc: 一句话介绍这本书。

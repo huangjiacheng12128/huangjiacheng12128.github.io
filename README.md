@@ -23,8 +23,9 @@
 - 右上角本地搜索（`hexo-generator-searchdb`，无需第三方服务）；
 - 文章目录、代码块复制、文章版权声明、分享按钮；
 - 明暗主题切换（右下角月亮/太阳按钮）；
-- 归档、分类、标签、相册、关于页；
+- 归档、分类、标签、相册、电子书、关于页；
 - **相册照片墙**：网格缩略图、点开左右翻看大图，配套上传脚本；
+- **电子书专区**：书籍卡片、格式/大小/简介、点击下载，配套上传脚本；
 - 构建时生成 `search.xml`、`sitemap.xml`、`atom.xml`。
 
 ## 目录结构
@@ -41,17 +42,23 @@
 ├─ 添加图片.ps1           选图/截图 → 存入 source/img → 复制 Markdown
 ├─ 上传照片.cmd           双击运行（桌面快捷方式「上传照片」指向它）
 ├─ 上传照片.ps1           多选照片 → 相册 → 自动构建/提交/推送
+├─ 上传电子书.cmd         双击运行（桌面快捷方式「上传电子书」指向它）
+├─ 上传电子书.ps1         选电子书 → 书架 → 自动构建/提交/推送
 ├─ .github/workflows/
 │  └─ pages.yml           推送到 main 后自动构建并部署
 ├─ scripts/
-│  └─ photo-gallery.js    相册标签（{% photo_gallery %}）
+│  ├─ photo-gallery.js    相册标签（{% photo_gallery %}）
+│  └─ ebook-list.js       电子书标签（{% ebook_list %}）
 ├─ source/
 │  ├─ _posts/             文章（Markdown）
 │  ├─ _data/photos.yml    相册照片清单（由「上传照片」自动维护）
+│  ├─ _data/books.yml     电子书清单（由「上传电子书」自动维护）
 │  ├─ about/              关于页
 │  ├─ categories/         分类页
 │  ├─ tags/               标签页
 │  ├─ photos/             相册页
+│  ├─ books/              电子书页
+│  │  └─ files/           电子书原文件（epub / pdf 等）
 │  ├─ css/custom.css      视觉微调（横幅极光、卡片、相册、页脚）
 │  ├─ img/                图片、头像、横幅、文章封面
 │  │  └─ photos/          相册原图
@@ -174,6 +181,46 @@ categories:
 - 原图会原样进入仓库，体积越大，clone 和页面加载越慢；
 - 删除照片：删掉 `source/img/photos/` 里的图和 `photos.yml` 里对应的三行；
 - 相册页模板在 `source/photos/index.md`，样式在 `source/css/custom.css` 的 `.photo-*` 部分。
+
+## 电子书专区
+
+顶部菜单「电子书」是一个下载书架：每本书一张卡片，显示书名、作者、格式、大小和简介，点「下载」保存到本地。
+
+### 上传电子书
+
+1. 双击桌面「上传电子书」（或运行 `.\上传电子书.cmd`）；
+2. 选择 EPUB / PDF / MOBI / AZW3 / TXT / MD / ZIP，可多选；
+3. 按提示填书名、作者、一句话简介（都可以留空，默认用文件名）；
+4. 脚本会自动：
+   - 把文件复制到 `source/books/files/`；
+   - 在 `source/_data/books.yml` 追加记录；
+   - 构建、提交并推送；
+5. 等 Actions 完成，打开 <https://huangjiacheng12128.github.io/books/>。
+
+### 手动添加（GitHub 网页也能做）
+
+1. 把文件传到仓库的 `source/books/files/`；
+2. 编辑 `source/_data/books.yml`，追加：
+
+   ```yaml
+   - title: 书名
+     author: 作者
+     file: /books/files/书名.epub
+     format: EPUB
+     size: 1.2 MB
+     date: '2026-10-23'
+     desc: 一句话介绍
+   ```
+
+3. 提交后 Actions 会自动发布。
+
+### 关于文件存储
+
+- 电子书文件**确实存放在 GitHub 仓库里**，访问者从 GitHub Pages 下载，不需要额外的服务器；
+- GitHub 单个文件上限 100MB（网页上传 25MB），仓库和 Pages 建议控制在 1GB 内；超大文件可以压缩成 zip 或改用网盘链接；
+- 只上传自己有权分享的文件（自己写的、公版书、获得授权的），不要上传有版权的电子书；
+- 删除：删掉 `source/books/files/` 里的文件，再删 `books.yml` 里对应的条目；
+- 页面模板在 `source/books/index.md`，样式在 `source/css/custom.css` 的 `.book-*` 部分。
 
 ## 自动部署
 
