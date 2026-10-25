@@ -36,7 +36,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  const needsFresh = /\.(css|js|json|xml)$/i.test(url.pathname);
+  const needsFresh = /\.(css|js|json|xml|png|jpe?g|webp|gif|svg|ico)$/i.test(url.pathname);
   event.respondWith(
     needsFresh ? networkFirst(request, ASSET_CACHE) : staleWhileRevalidate(request, ASSET_CACHE)
   );
