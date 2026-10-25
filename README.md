@@ -60,6 +60,8 @@
 │  ├─ books/              电子书页
 │  │  └─ files/           电子书原文件（epub / pdf 等）
 │  ├─ css/custom.css      视觉微调（横幅极光、卡片、相册、页脚）
+│  ├─ sw.js               Service Worker：页面优先取网络，避免旧缓存
+│  ├─ js/sw-register.js   注册上面的 Service Worker
 │  ├─ img/                图片、头像、横幅、文章封面
 │  │  └─ photos/          相册原图
 └─ public/                构建产物（已 gitignore，不提交）
@@ -256,7 +258,10 @@ categories:
 首次推送需要登录 GitHub 一次，之后会自动完成。如果一直失败，在 GitHub Desktop 里手动点 **Push origin**，本地提交都在。
 
 **网页上一提交就 404 / 页面是旧的？**
-在 Actions 里等构建完成（约 1 分钟），再强制刷新（Ctrl+F5）。构建失败看 Actions 的红色日志。
+
+在 Actions 里等构建完成（约 1 分钟）。站点内置了 `/sw.js`（Service Worker）：页面导航会优先取网络，装好之后打开就是最新版，不再被 GitHub Pages 的 10 分钟 HTML 缓存拖住。
+
+这个功能上线后的**第一次**仍需手动强制刷新一次（`Ctrl+F5`）——因为旧页面里还没有注册脚本，浏览器只能等缓存过期。之后就不用再手动刷新了。构建失败看 Actions 的红色日志。
 
 **图片放哪、多大合适？**
 统一放 `source/img/`，用 `/img/文件名` 引用。图片会随文章永久留在仓库里，体积越大，clone 和加载越慢。
